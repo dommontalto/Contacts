@@ -41,11 +41,11 @@ struct ContactsView: View {
             }
             .sheet(isPresented: $showAddContactView) {
                 AddContactView()
-                    .presentationDetents([.medium])
+                    .presentationDetents([.height(300)])
             }
-            .navigationDestination(for: Contact.self, destination: { contact in
-                Text(contact.firstName)
-            })
+            .navigationDestination(for: Contact.self) { contact in
+                EditContactView(contact: contact)
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {

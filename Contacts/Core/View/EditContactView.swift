@@ -1,0 +1,69 @@
+//
+//  EditContactView.swift
+//  Contacts
+//
+//  Created by Dominic Montalto on 23/04/2025.
+//
+
+import SwiftUI
+
+struct EditContactView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    
+    @State private var contact: Contact
+    
+    init(contact: Contact) {
+        _contact = State(initialValue: contact)
+    }
+    
+    var body: some View {
+        VStack {
+            Form {
+                TextField("First Name", text: $contact.firstName)
+                
+                TextField("Last Name", text: $contact.lastName)
+                
+                TextField("Email", text: $contact.email)
+                    .keyboardType(.emailAddress)
+                    .textContentType(.emailAddress)
+                    .textInputAutocapitalization(.never)
+            }
+            
+            Button("Delete") {
+                
+            }
+        }
+        .navigationTitle("Edit Contact")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
+        .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel") {
+                       dismiss()
+                    }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Save") {
+                        // add contact
+                       dismiss()
+                    }
+                    .font(.headline)
+                }
+            }
+        
+    }
+}
+
+#Preview {
+    EditContactView(
+        contact: .init(
+            id: "1",
+            firstName: "Michael",
+            lastName: "Jordan",
+            email: "test@gmail.com"
+        )
+    )
+}
+
