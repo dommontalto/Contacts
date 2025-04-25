@@ -12,11 +12,11 @@ struct ContactsRowView: View {
 
     var body: some View {
         HStack {
-//            Text(contact.initials)
-//                .foregroundStyle(.white)
-//                .frame(width: 48, height: 48)
-//                .background(Color(.systemGray4))
-//                .clipShape(.circle)
+            Text(contact.initials)
+                .foregroundStyle(.white)
+                .frame(width: 48, height: 48)
+                .background(Color(.systemGray4))
+                .clipShape(.circle)
 
             VStack(alignment: .leading) {
                 Text("\(contact.firstName) \(contact.lastName)")

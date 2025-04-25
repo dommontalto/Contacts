@@ -9,11 +9,11 @@ import SwiftUI
 
 struct AddContactView: View {
     @Environment(\.dismiss) var dismiss
-    
+    @Environment(ContactsViewModel.self) var viewModel
+   
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var email: String = ""
-    
     
     var body: some View {
         NavigationStack {
@@ -40,8 +40,8 @@ struct AddContactView: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {
-                        // add contact
-                       dismiss()
+                        addContact()
+                        dismiss()
                     }
                     .font(.headline)
                 }
@@ -50,6 +50,22 @@ struct AddContactView: View {
     }
 }
 
+private extension AddContactView {
+    func addContact() {
+        let contact = Contact(
+            id: UUID().uuidString,
+            firstName: firstName,
+            lastName: lastName,
+            email: email
+        )
+        
+        viewModel.addContact(contact)
+    }
+    
+   
+}
+
 #Preview {
     AddContactView()
+        .environment(ContactsViewModel())
 }

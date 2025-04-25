@@ -1,0 +1,55 @@
+//
+//  ContactsViewModel.swift
+//  Contacts
+//
+//  Created by Dominic Montalto on 24/04/2025.
+//
+
+import Observation
+
+@Observable
+class ContactsViewModel {
+    var contacts = [Contact]()
+    
+    init() {
+        fetchContacts()
+    }
+    
+    func fetchContacts() {
+        contacts = [
+            .init(
+                id: "1",
+                firstName: "Michael",
+                lastName: "Jordan",
+                email: "jumpman23@gmail.com"
+            ),
+            .init(
+                id: "2",
+                firstName: "Kobe",
+                lastName: "Bryant",
+                email: "mamba@gmail.com"
+            ),
+            .init(
+                id: "3",
+                firstName: "Lebron",
+                lastName: "James",
+                email: "king.james@gmail.com"
+            )
+        ]
+    }
+    
+    func addContact(_ contact: Contact) {
+        contacts.append(contact)
+    }
+    
+    func deleteContact(_ contact: Contact) {
+        guard let index = contacts.firstIndex(where: { $0.id == contact.id }) else { return }
+        contacts.remove(at: index)
+    }
+    
+    func updateContact(_ contact: Contact) {
+        guard let index = contacts.firstIndex(where: { $0.id == contact.id }) else { return }
+        contacs[index] = contact
+    }
+}
+

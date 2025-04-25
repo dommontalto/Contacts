@@ -8,35 +8,17 @@
 import SwiftUI
 
 struct ContactsView: View {
-    @State private var contacts: [Contact] = [
-        .init(
-            id: "1",
-            firstName: "Michael",
-            lastName: "Jordan",
-            email: "jumpman23@gmail.com"
-        ),
-        .init(
-            id: "2",
-            firstName: "Kobe",
-            lastName: "Bryant",
-            email: "mamba@gmail.com"
-        ),
-        .init(
-            id: "3",
-            firstName: "Lebron",
-            lastName: "James",
-            email: "king.james@gmail.com"
-        )
-    ]
-    
+    @State private var viewModel = ContactsViewModel()
     @State private var searchText = ""
     @State private var showAddContactView = false
     
     var body: some View {
         NavigationStack {
-            List(contacts) { contact in
-                NavigationLink(value: contact) {
-                    ContactsRowView(contact: contact)
+            List {
+                ForEach(viewModel.contacts) { contact in
+                    NavigationLink(value: contact) {
+                        ContactsRowView(contact: contact)
+                    }
                 }
             }
             .sheet(isPresented: $showAddContactView) {

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct EditContactView: View {
-    
     @Environment(\.dismiss) var dismiss
+    @Environment(ContactsViewModel.self) var viewModel
     
     @State private var contact: Contact
     
@@ -31,7 +31,7 @@ struct EditContactView: View {
             }
             
             Button("Delete") {
-                
+                deleteContact()
             }
         }
         .navigationTitle("Edit Contact")
@@ -46,13 +46,23 @@ struct EditContactView: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
-                        // add contact
+                       updateContact()
                        dismiss()
                     }
                     .font(.headline)
                 }
             }
         
+    }
+}
+
+private extension EditContactView {
+    func deleteContact() {
+        viewModel.deleteContact(contact)
+    }
+    
+    func updateContact() {
+        viewModel.addContact(contact)
     }
 }
 
@@ -65,5 +75,6 @@ struct EditContactView: View {
             email: "test@gmail.com"
         )
     )
+    .environment(ContactsViewModel())
 }
 
