@@ -61,8 +61,6 @@ private extension AddContactView {
         
         viewModel.addContact(contact)
     }
-    
-   
 }
 
 #Preview {

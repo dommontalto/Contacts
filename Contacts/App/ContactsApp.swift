@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct ContactsApp: App {
+    @State private var viewModel = ContactsViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContactsView()
+                .environment(viewModel)
         }
     }
 }
