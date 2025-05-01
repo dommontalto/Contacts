@@ -7,8 +7,6 @@
 
 /*
  
- 53:43
- 
 *** OVERVIEW ***
 Take Home / Live Interview Example
 

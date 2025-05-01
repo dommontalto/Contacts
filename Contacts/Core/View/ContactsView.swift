@@ -22,6 +22,16 @@ struct ContactsView: View {
                 ForEach(searchResults) { contact in
                     NavigationLink(value: contact) {
                         ContactsRowView(contact: contact)
+                            .swipeActions {
+                                Button {
+                                    withAnimation {
+                                        viewModel.deleteContact(contact)
+                                    }
+                                } label: {
+                                    Image(systemName: "trash")
+                                }
+                                .tint(.red)
+                            }
                     }
                 }
             }
